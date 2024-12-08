@@ -26,7 +26,7 @@ html, body {
 
 /* Title and Subtitle */
 .title {
-    font-size: clamp(24px, 6vw, 48px);
+    font-size: clamp(32px, 8vw, 48px); /* Doubled the size */
     font-weight: bold;
     margin-bottom: 10px;
     color: #311462;
@@ -35,7 +35,8 @@ html, body {
 }
 
 .subtitle {
-    font-size: clamp(14px, 4vw, 24px);
+    font-size: clamp(15px, 6vw, 10px); /* Increased by 50% */
+    font-style: italic;
     margin: 10px 0 20px;
     color: #d3d3d3;
     text-shadow: 1px 1px 5px #000;
@@ -56,7 +57,7 @@ html, body {
 
 /* Health and Armor Values */
 .value {
-    font-size: clamp(32px, 6vw, 48px);
+    font-size: clamp(64px, 12vw, 96px); /* Doubled the size */
     font-weight: bold;
     margin-bottom: 20px;
     text-align: center;
@@ -83,10 +84,10 @@ html, body {
 
 button {
     font-family: 'Copperplate Gothic 29 BC', 'Copperplate', 'Copperplate Gothic Light', sans-serif;
-    font-size: clamp(14px, 2.5vw, 18px);
-    padding: 10px;
-    flex: 1 1 20%; /* Flexible buttons for responsiveness */
-    max-width: 80px; /* Prevent buttons from being too wide */
+    font-size: clamp(21px, 3.75vw, 27px); /* Increased by 50% */
+    padding: 15px; /* Increased by 50% */
+    flex: 1 1 30%; /* Increased width by 50% */
+    max-width: 120px; /* Increased max width by 50% */
     height: auto;
     background-color: #222;
     border: 2px solid #555;
@@ -133,15 +134,34 @@ button:hover {
 }
 
 .tracker h3 {
-    font-size: clamp(16px, 4vw, 20px);
-    margin-bottom: 10px;
+    font-size: clamp(30px, 8vw, 30px); /* Doubled the size */
+    margin-bottom: none;
     color: #00e1ff;
     text-shadow: 1px 1px 5px #00e1ff;
 }
 
 .tracker-log {
-    font-size: clamp(12px, 3vw, 16px);
+    font-size: clamp(15px, 6vw, 15px); /* Doubled the size */
     line-height: 1.5;
     color: #e2e2e2;
     overflow-wrap: break-word;
+}
+
+.rules {
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(20, 20, 30, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    overflow-y: auto;
+    max-height: 200px;
+}
+
+.rules h3 {
+    font-size: clamp(30px, 8vw, 30px); /* Doubled the size */
+    margin-bottom: none;
+    color: #00e1ff;
+    text-shadow: 1px 1px 5px #00e1ff;
 }

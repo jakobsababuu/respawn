@@ -167,3 +167,18 @@ html, body {
     background-color: #e41e1e;
     transform: translateY(-3px);
 }
+
+.intro {
+    background-color: rgba(14, 14, 16, 0.8); /* Dark transparent background */
+    padding: 20px;
+    border-radius: 15px; /* Rounds the corners to match overall design */
+    text-align: center;
+    margin-bottom: 20px;
+    color: #e2e2e2;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Adds a subtle shadow to lift it off the background */
+}
+
+.intro p {
+    font-size: 18px; 
+    line-height: 1.6;
+}
