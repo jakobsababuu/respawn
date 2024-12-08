@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Respawn - Choose Your Path</title>
+    <link rel="stylesheet" href="shared/styles.css">
+    <style>
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #000000;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px; /* Could be more or less, depending on screen size */
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .class-name {
+            display: inline-block;
+             font-size: 1.5em; /* Adjust as needed */
+            font-weight: bold;
+             color: #ffffff;
+            margin: 0 5px;
+}
+
+        .modal-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .modal-buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .modal-buttons .yes-button {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .modal-buttons .no-button {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Choose Your Class</div>
+        
+        <div class="path-selection">
+            <a href="AstralWeaver/index.html" class="path-link">
+                <img src="images/astral-weaver.png" alt="Astral Weaver" class="path-image">
+            </a>
+
+            <a href="Beastlord/index.html" class="path-link">
+                <img src="images/beastlord.png" alt="Beastlord" class="path-image">
+            </a>
+
+            <a href="Peacekeeper/index.html" class="path-link">
+                <img src="images/peacekeeper.png" alt="Peacekeeper" class="path-image">
+            </a>
+
+            <a href="Pyromaniac/index.html" class="path-link">
+                <img src="images/pyromaniac.png" alt="Pyromaniac" class="path-image">
+            </a>
+
+            <a href="Totemist/index.html" class="path-link">
+                <img src="images/totemist.png" alt="Totemist" class="path-image">
+            </a>
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <p id="modalMessage">You have chosen <span class="class-name">[class]</span>.<br>Are you ready?</p>            <div class="modal-buttons">
+                <button class="yes-button" id="confirmYes">Yes</button>
+                <button class="no-button" id="confirmNo">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript to Shuffle Images and Handle Modal -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.path-selection');
+            const links = Array.from(container.querySelectorAll('.path-link'));
+            
+            // Fisher-Yates Shuffle Algorithm
+            for (let i = links.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [links[i], links[j]] = [links[j], links[i]];
+            }
+            
+            // Clear the container and append shuffled links
+            container.innerHTML = '';
+            links.forEach(link => container.appendChild(link));
+
+            // Modal Elements
+            const modal = document.getElementById('confirmationModal');
+            const yesButton = document.getElementById('confirmYes');
+            const noButton = document.getElementById('confirmNo');
+            let selectedLink = null;
+
+            // Function to open the modal
+            function openModal(link) {
+                selectedLink = link;
+                modal.style.display = 'block';
+            }
+
+             // Function to open the modal with dynamic message
+             function openModal(link) {
+                selectedLink = link;
+                const className = link.querySelector('img').alt;
+                modalMessage.innerHTML = `You have chosen <span class="class-name">${className}</span><br>Are you ready?`;
+                modal.style.display = 'block';
+            }
+
+            // Function to close the modal
+            function closeModal() {
+                modal.style.display = 'none';
+                selectedLink = null;
+            }
+
+            // Attach click event listeners to all path links
+            links.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent immediate navigation
+                    openModal(this);
+                });
+            });
+
+            // Handle Yes button click
+            yesButton.addEventListener('click', function() {
+                if (selectedLink) {
+                    window.location.href = selectedLink.href;
+                }
+            });
+
+            // Handle No button click
+            noButton.addEventListener('click', function() {
+                closeModal();
+            });
+
+            // Close modal when clicking outside of the modal content
+            window.addEventListener('click', function(event) {
+                if (event.target == modal) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
